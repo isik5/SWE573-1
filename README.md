@@ -1,2 +1,2 @@
 # SWE573
-Health Tracker" project
+Repository of the "Health Tracker" application
