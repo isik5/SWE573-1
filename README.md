@@ -20,6 +20,6 @@ available for Ubuntu. You may install it with this command:
 After you download all the files, you may compile document with this 
 command:
 
-	pdflatex ttec.tex
+	pdflatex content.tex
 
 
