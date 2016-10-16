@@ -16,4 +16,7 @@ def index(request):
 	context = {
 		'username' : request.user.username,
 	}
-	return render_with_master(request, context, 'nutritrack/index.html')
+	if (request.user.is_authenticated):
+		return render_with_master(request, context, 'nutritrack/index.html')
+	else:
+		return render_with_master(request, context, 'nutritrack/welcome.html')
