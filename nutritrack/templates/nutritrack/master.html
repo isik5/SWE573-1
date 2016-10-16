@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<title>Hello World</title>
+		<style>
+		body{
+			background-color: #efefef;
+		}
+
+		h2 {
+		  color:#ffffff;
+		}
+
+		.page_content{
+			padding: 40px 20px 40px 20px;
+			margin: 55px auto auto auto;
+			width: 80%;
+			border: 1px solid #dfdfdf;
+			border-radius: 5px;
+			background-color: #ffffff;
+		}
+		</style>
+	</head>
+	<body>
+		{{ navbar }}
+		  <div class="page_content container-fluid">
+		{{ page_content }}
+		</div>
+	</body>
+</html>
