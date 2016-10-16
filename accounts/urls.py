@@ -19,6 +19,8 @@ from . import views
 
 app_name = 'accounts'
 urlpatterns = [
+    url(r'^signin_request/$', views.signin_request, name='signin_request'),
+    url(r'^signin/$', views.signin, name='signin'),
     url(r'^signup_request/$', views.signup_request, name='signup_request'),
     url(r'^signup/$', views.signup, name='signup'),
 ]

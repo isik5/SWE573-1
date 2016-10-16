@@ -1,0 +1,12 @@
+<html>
+
+	<body>
+		<form action="{% url 'accounts:signin_request' %}" method="POST">
+			{% csrf_token %}
+		        User Name: <input name="user" type="text" /></br>
+		        Password: <input name="pass" type="password" />
+			<input type="submit"value="Submit" />
+		</form>
+	</body>
+
+</html>
