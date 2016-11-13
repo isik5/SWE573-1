@@ -21,9 +21,19 @@ def get_navbar(request, context):
         return render_to_string('nutritrack/navbar.html', context, request=request)
 
 #---------------------------------------------------
+def get_sidebar(request, context):
+        return render_to_string('nutritrack/sidebar.html', context, request=request)
+
+#---------------------------------------------------
 def render_with_master(request, context, content_page):
         context['navbar'] = get_navbar(request, context);
         context['page_content'] = render_to_string(content_page, context, request=request)
+
+	if (request.user.is_authenticated):
+		context['sidebar'] = get_sidebar(request, context)
+	else:
+		context['sidebar'] = ' '
+
         return render(request, 'nutritrack/master.html', context)
 
 
