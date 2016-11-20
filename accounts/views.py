@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.template.loader import render_to_string
 #from models import *
 from nutritrack.pagebuilder import *
-
+from accounts.models import UserInfo, Gender
 #---------------------------------------------------
 #def get_navbar(request, context):
 #	return render_to_string('nutritrack/navbar.html', context, request=request)
@@ -58,6 +58,18 @@ def signup_request(request):
 	password = request.POST['pass']
 	mail	 = request.POST['mail']
 	user = User.objects.create_user(username, mail, password)
+
+	ur = UserInfo()
+	ur.user = user
+	ur.gender = Gender.Male
+	ur.weightInKg = 92
+	ur.heightInKg = 180
+	ur.save()
+#        registration_date = models.DateTimeField(auto_now_add=True, help_text='The date of the registratio$
+#        birth_date        = models.DateTimeField(auto_now_add=True, help_text='The date of birth')
+
+
+
 
 	return render_with_master(request, {
 		'username' : username,
