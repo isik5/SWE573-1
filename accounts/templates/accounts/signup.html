@@ -19,9 +19,30 @@
 					<label for="pass1">Password</label>
 					<input type="password" class="form-control" name="pass"/>
 				</div>
+
+
+		<label for="pass1">Birth Date</label>
+                <div class="from-group input-group date" id="datetimepicker1">
+                    <input type="text" class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+		   <script type="text/javascript">
+	  		$(function () {
+	                	$('#datetimepicker1').datetimepicker({
+		        	format: 'dd/MM/yyyy hh:mm:ss',
+	       			language: 'pt-BR'
+	      			});
+	            	});
+	        	</script>
+
+
 				<button type="submit" class="btn btn-primary btn-lg">
 					Create Account
 				</button>
+
+
 			</form>
 		</div>
 		<div class="col-md-6">

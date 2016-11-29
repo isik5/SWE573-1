@@ -1,0 +1,22 @@
+{
+  "name": "nutritrack_app",
+  "homepage": "https://github.com/onatbas/SWE573",
+  "authors": [
+    "Onat <onatbas@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "^4.17.43",
+    "bootstrap": "^3.3.7"
+  }
+}
