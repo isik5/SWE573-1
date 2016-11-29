@@ -1,7 +1,8 @@
-                <div class="col-md-1 sidebar">
-                                <div class="panel-body">
+<div style="position: relative:">
+                <div class="col-md-1 sidebar_usda">
+                                <div class="panel-body minial_panel">
 
-                                        <a href="#" class="sidebar-button">
+					<a href="{% url 'usda:foodsearch' %}" class="sidebar-button">
                                         <img src="/static/nutritrack/apple.png" alt="Food Icon"/>
                                         </a>
                                         <a href="#" class="sidebar-button">
@@ -11,13 +12,14 @@
                                         <img src="/static/nutritrack/info.png" alt="Information Icon"/>
                                         </a>
                                 </div>
-                                <div class="panel-footer">
+                                <div class="panel-footer minial_panel">
                                         <a href="#" class="sidebar-button">
                                         <img src="/static/nutritrack/gear.png" alt="Gear Icon"/>
                                         </a>
-                                        <a href="#" class="sidebar-button">
+                                        <a href="{% url 'accounts:logout' %}" class="sidebar-button">
                                         <img src="/static/nutritrack/logout.png" alt="Logout Icon"/>
                                         </a>
                                 </div>
                 </div>
+</div>
 

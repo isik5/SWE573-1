@@ -18,6 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^accounts/', include('accounts.urls')),
+    url(r'^usda/', include('usda.urls')),
     url(r'^', include('nutritrack.urls')),
 
     url(r'^admin/', admin.site.urls),

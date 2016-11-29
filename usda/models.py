@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from django.db import transaction
 from django.db import models
 import requests
 
@@ -45,25 +46,33 @@ def create_food_from_json(json):
 	object.name = json['name']
 	object.category = json['group']
 	object.ndbno = json['ndbno']
-	object.save()
 	return object
 
 #--------------------------------------------------------------
+food_to_save = []
 def get_food_from_json(json):
 	results = Food.objects.filter(ndbno=json['ndbno'])
 	if (len(results) == 0):
-		return create_food_from_json(json)
+		obj = create_food_from_json(json)
+		food_to_save.append(obj)
+		return obj
 	else:
 		return results[0]
 
+#-------------------------------------------------------------
+@transaction.atomic
+def save_foods():
+	for item in food_to_save:
+		item.save()
 
 #--------------------------------------------------------------
+
+@transaction.atomic
 def register_for_queries(objects, name):
 	object = Search_query()
 	object.query_string = name
 	object.save()
 	length = len(objects)
-	
 	result_objects = []
 	for i in range(0, length):
 		entry = Search_entry()
@@ -87,16 +96,16 @@ class USDA:
 			objects = result[0].search_entry_set.all()
 		else:
 			url = self.get_search_url(name)
-			
-			json_response = requests.get(url).json()['list']['item']
+			jsonobj = requests.get(url).json()
+			json_response = jsonobj['list']['item']
 			length = len(json_response)
 			for i in range(0, length):
 				get_food_from_json(json_response[i])
+			save_foods()
 			objects = register_for_queries(json_response, name)
-		print('Returning')
+		print('No exception')
 		print (len(objects))
 		return objects
-
 
 
 

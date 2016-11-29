@@ -61,9 +61,12 @@ def signup_request(request):
 
 	ur = UserInfo()
 	ur.user = user
-	ur.gender = Gender.Male
-	ur.weightInKg = 92
-	ur.heightInKg = 180
+	if request.POST['gender'] is 'Male':
+		ur.gender = Gender.Male
+	else:
+		ur.gender = Gender.Female
+	ur.weightInKg = request.POST['weight']
+	ur.heightInKg = request.POST['height']
 	ur.save()
 #        registration_date = models.DateTimeField(auto_now_add=True, help_text='The date of the registratio$
 #        birth_date        = models.DateTimeField(auto_now_add=True, help_text='The date of birth')
