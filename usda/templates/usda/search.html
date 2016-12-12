@@ -41,16 +41,9 @@
 				{% for item in objects %}
 				<div>
 					<a data-toggle="collapse" data-target="#collapseExample{{ item.food.ndbno }}" aria-expanded="false" aria-controls="collapseExample{{ item.food.ndbno }}">
-		                        	<span class="glyphicon glyphicon-plus"></span>{{ item.food.name }}
+		                 
+         <a href="{% url 'usda:details' %}?ndbno={{ item.food.ndbno }}"><span class="glyphicon glyphicon-plus">{{ item.food.name }}</span></a>
 					</a>
-					<div class="collapse" id="collapseExample{{ item.food.ndbno }}">
-			 			 <div class="card card-block">
-			    				
-							<a href="{% url 'usda:details' %}?ndbno={{ item.food.ndbno }}">Click for details</a>
-						 </div>
-					</div>
-
-
 				</div>
 				{% endfor %}
 			</ul>
