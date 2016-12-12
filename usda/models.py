@@ -1,7 +1,9 @@
 from __future__ import unicode_literals
 from django.db import transaction
 from django.db import models
+from add_items import *
 import requests
+
 # These are models to cache 'search for nutrition'
 #--------------------------------------------------------------
 class Food(models.Model):
@@ -106,7 +108,10 @@ class USDA:
         return objects
 
 
-
+def get_activity_by_id(id):
+    if (PhysicalActivity.objects.count == 0):
+        add_items()
+    return PhysicalActivity.objects.filter(id=id)[0]
 
 
 class FCD(object):

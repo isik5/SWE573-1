@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from usda.models import Food
+from usda.add_items import *
 
 # Create your models here.
 
@@ -29,3 +30,14 @@ class Consumation(models.Model):
 	unit = models.CharField(max_length=50)
 	def __str__(self):
 		return "Consumation (" + self.user.username + " " + self.date.strftime('%Y-%m-%d %H:%M') + ", " + str(self.amount) + " " + self.unit + ")"
+
+class Sport(models.Model):
+	user  = models.ForeignKey(User)
+	date  = models.DateTimeField(auto_now_add=True, help_text='Consumation date')
+	cals  = models.IntegerField(default=0)
+	activity = models.ForeignKey(PhysicalActivity)
+	hours = models.FloatField(default=0)
+	def __str__(self):
+		return "Sport (" + self.activity.name + " " + str(self.hours) + " hours)"
+
+

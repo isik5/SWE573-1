@@ -6,9 +6,11 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from nutritrack.pagebuilder import *
+from accounts.models import UserInfo, Sport
 
 #from django.shortcuts import render
 from models import USDA, Food, FCD
+from usda.add_items import PhysicalActivity
 from accounts.models import Consumation
 
 
@@ -19,6 +21,17 @@ def foodsearch(request):
 	}
 	if (request.user.is_authenticated):
 		return render_with_master(request, context, 'usda/search.html')
+	else:
+		return redirect('accounts:signup')
+
+
+#---------------------------------------------------
+def activitysearch(request):
+	context = {
+		'username' : request.user.username,
+	}
+	if (request.user.is_authenticated):
+		return render_with_master(request, context, 'usda/activity.html')
 	else:
 		return redirect('accounts:signup')
 
@@ -36,8 +49,25 @@ def searchrequest(request):
 			context['results_size'] = len(objects)
 		except KeyError:
 			print('Exception')
-		print (context)
 		return render_with_master(request, context, 'usda/search.html')
+	else:
+		return redirect('accounts:signup')
+
+
+#---------------------------------------------------
+def searchactivityrequest(request):
+	context = {
+		'username' : request.user.username,
+	}
+	if (request.user.is_authenticated):
+		objects = []
+		try:
+			objects = PhysicalActivity.objects.filter(name__regex=request.POST['fname'])
+			context['objects'] = objects
+			context['results_size'] = len(objects)
+		except KeyError:
+			print('Exception')
+		return render_with_master(request, context, 'usda/activity.html')
 	else:
 		return redirect('accounts:signup')
 
@@ -83,3 +113,40 @@ def	eat(request):
 	return render_details(request, context);
 
 
+def activity_details(request):
+	if (request.user.is_authenticated):
+		objects = []
+		try:
+			context = {
+				'username' : request.user.username,
+			}
+			objects = PhysicalActivity.objects.filter(id=request.GET['ndbno'])[0]
+			context['object'] = objects
+		except KeyError:
+			print('Exception')
+		return render_with_master(request, context, 'usda/activity_details.html')
+	else:
+		return redirect('accounts:signup')
+
+
+def activity_apply(request):
+	if (request.user.is_authenticated):
+		objects = []
+		us = UserInfo.objects.filter(user=request.user)[0]
+		try:
+			hours = float(request.POST['hours']);
+			objects = PhysicalActivity.objects.filter(id=request.POST['activity'])[0]
+			cal = 45.83 / 100 * 2.2 * us.weightInKg * objects.METS * hours
+
+			Sport(cals=cal, hours=hours, activity=objects, user=request.user).save()
+			
+			context = {
+				'username' : request.user.username,
+				'message' : 'Sport saved. (' + str(cal) + " calories)",
+			}
+			context['object'] = objects
+		except KeyError:
+			print('Exception')
+		return render_with_master(request, context, 'usda/activity_details.html')
+	else:
+		return redirect('accounts:signup')
