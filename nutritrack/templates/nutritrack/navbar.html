@@ -1,29 +1,17 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'nutritrack:index' %}">NutriTrack</a>
+    </div>
 
-
-                        <nav class="navbar navbar-default navbar-static-top navbar-inverse" role="navigation">
-                                <div class="navbar-header">
-
-                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                                 <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                                        </button> <a class="navbar-brand" href="{% url 'nutritrack:index' %}">NutriTrack</a>
-                                </div>
-
-                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                        <form class="navbar-form navbar-left" role="search">
-                                                <div class="form-group">
-                                                        <input type="text" class="form-control" />
-                                                </div>
-                                                <button type="submit" class="btn btn-default">
-                                                        Search
-                                                </button>
-                                        </form>
-                                        <ul class="nav navbar-nav navbar-right">
-
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
 		{{ navbar_buttons }}
-                                        </ul>
-                                </div>
-
-                        </nav>
+	</ul>
+    </div>
+  </div>
+</nav>
 
 
 

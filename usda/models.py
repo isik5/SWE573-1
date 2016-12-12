@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from django.db import transaction
 from django.db import models
-
+import requests
 # These are models to cache 'search for nutrition'
 #--------------------------------------------------------------
 class Food(models.Model):
