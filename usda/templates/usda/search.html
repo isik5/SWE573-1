@@ -20,6 +20,8 @@
                 <button type="submit" class="btn btn-primary btn-lg">
 			Search
                 </button>
+           </form>
+
 
 
 		{% if results_size > 0 %}
@@ -44,7 +46,7 @@
 					<div class="collapse" id="collapseExample{{ item.food.ndbno }}">
 			 			 <div class="card card-block">
 			    				
-							<h5>{{item.food.category}}</h5>
+							<a href="{% url 'usda:details' %}?ndbno={{ item.food.ndbno }}">Click for details</a>
 						 </div>
 					</div>
 

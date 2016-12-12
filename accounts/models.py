@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from usda.models import Food
 
 # Create your models here.
 
@@ -19,3 +20,12 @@ class UserInfo(models.Model):
 
 	def __str__(self):
 		return "Info (" + self.user.username + ")"
+
+class Consumation(models.Model):
+	user  = models.ForeignKey(User)
+	food  = models.ForeignKey(Food)
+	date  = models.DateTimeField(auto_now_add=True, help_text='Consumation date')
+	amount = models.FloatField(default=0)
+	unit = models.CharField(max_length=50)
+	def __str__(self):
+		return "Consumation (" + self.user.username + " " + self.date.strftime('%Y-%m-%d %H:%M') + ", " + str(self.amount) + " " + self.unit + ")"

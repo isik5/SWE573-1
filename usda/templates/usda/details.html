@@ -1,0 +1,64 @@
+<html>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:5;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-yw4l{vertical-align:top}
+.mess {  }
+</style>
+<body>
+<div class="jumbotron container-fluid">
+	   
+
+	   {% if message is not None %}
+	   	<ul class="search_results_ul">{{ message }}</p>
+	   {% endif %}
+
+		<div class="col-md-11">
+
+	    <h4>{{ food.name }}</h4>
+	    <h5>{{ food.category }}</h5>
+
+
+	    <table class="tg">
+	    {% for item in nutrients %}
+		  <tr  class="tg">
+    	     <th class="tg-yw4l">{{ item.name }}</th>
+             <th class="tg-yw4l">{{ item.unit }}</th>
+             <th class="tg-yw4l">{{ item.value }}</th>
+          </tr>
+	    {% endfor %}
+</table>
+
+		<br>
+		<br>
+
+
+		<form role="form" action="{% url 'usda:eat' %}" method="POST">
+			{% csrf_token %}
+            <input type="hidden" name="ndbno" value="{{ food.ndbno }}" />
+
+	       <div class="from-group input-group date" id="fname" >
+
+                    <input type="text" name="fname" />
+			<select name="unit">
+				    {% for measure in measures %}
+						<option value="{{ measure }}">{{ measure }}</option>
+				    {% endfor %}
+			</select>
+                    </span>
+                    
+
+                </div>
+
+		<br>
+                <button type="submit" class="btn btn-primary btn-lg">
+			Save
+                </button>
+           </form>
+
+
+		</div>
+	</div>
+</body>
+</html>

@@ -21,5 +21,7 @@ app_name = 'usda'
 urlpatterns = [
     url(r'^$', views.foodsearch, name='foodsearch'),
     url(r'^search/$', views.searchrequest, name='search_request'),
+    url(r'^details/$', views.details, name='details'),
+    url(r'^eat/$', views.eat, name='eat'),
 
 ]
