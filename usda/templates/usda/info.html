@@ -22,7 +22,7 @@
 				Calory limit {{ cal_max }} 
 				</div>
 				<div class="col-md-4">
-				Total {{ cal_total }}
+				Total {{ total_cal }}
 				</div>
 			</div>
 		</div>
@@ -69,6 +69,10 @@
 		<br>
 		<div class="flowtable">
 			<div class="flow_line">
+			{% for sport in sports %}
+			<span class="sidebar-button item"><span class="glyphicon glyphicon-fire"></span><span class="arther"> {{ sport.activity.name }} ({{ sport.hours }} hours)</span></span>
+			{% endfor %}
+			<hr>
 			{% for consumation in consumations %}
 			<span class="sidebar-button item"><span class="glyphicon glyphicon-cutlery"></span><span class="arther"> {{ consumation.food.name }} ({{ consumation.amount }} {{ consumation.unit }})</span></span>
 			{% endfor %}

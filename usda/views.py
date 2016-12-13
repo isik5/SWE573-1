@@ -10,7 +10,7 @@ from accounts.models import UserInfo, Sport
 import datetime
 
 #from django.shortcuts import render
-from models import USDA, Food, FCD
+from models import USDA, Food, FCD, calculate_consumption
 from usda.add_items import PhysicalActivity
 from accounts.models import Consumation
 
@@ -162,13 +162,26 @@ def info(request):
 	today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
 	today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
 	consumations = request.user.consumation_set.filter(date__range=(today_min, today_max))
+	sports = request.user.sport_set.filter(date__range=(today_min, today_max))
+
+	total_cal = 0
+
+	for c in consumations:
+		total_cal = total_cal + calculate_consumption(c.food.ndbno, c.unit, c.amount)
+	total_cal = total_cal / 100.0
+
+	for s in sports:
+		total_cal = total_cal - s.cals
+
 	if (request.user.is_authenticated):
 		context = {
 			'username' : request.user.username,
 			'userinfo': usinfo,
 			'bmi' : bmi,
 			'cal_max': ideal_cal - 200,
-			'consumations' : consumations
+			'consumations' : consumations,
+			'total_cal' : total_cal,
+			'sports' : sports, 
 		}
 		return render_with_master(request, context, 'usda/info.html')
 	else:

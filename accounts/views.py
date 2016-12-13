@@ -66,14 +66,34 @@ def signup_request(request):
 	else:
 		ur.gender = Gender.Female
 	ur.weightInKg = request.POST['weight']
-	ur.heightInKg = request.POST['height']
+	ur.heightInCm = request.POST['height']
 	ur.save()
 #        registration_date = models.DateTimeField(auto_now_add=True, help_text='The date of the registratio$
 #        birth_date        = models.DateTimeField(auto_now_add=True, help_text='The date of birth')
 
-
-
-
 	return render_with_master(request, {
 		'username' : username,
 	}, 'accounts/signup_success.html');
+
+def settings(request):
+	context = {
+		'user' : request.user.userinfo_set.all()[0],
+		'username': request.user.username,
+	}
+
+	return render_with_master(request, context, 'accounts/settings.html');
+
+def change(request):
+	
+	us = request.user.userinfo_set.all()[0]
+	us.weightInKg = request.POST["weight"]
+	us.heightInCm = request.POST["height"]
+	us.save()
+	context = {
+		'username' : request.user.username,
+		'user' : request.user.userinfo_set.all()[0],
+	}
+
+	context['message'] = "Changes saved"
+
+	return render_with_master(request, context, 'accounts/settings.html');

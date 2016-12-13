@@ -88,11 +88,11 @@ def register_for_queries(objects, name):
 class USDA:
     api_key='No0xRSnThHjjaSlDTSWz41dyVn8dkvaJkw6TQxvO'
     def get_search_url(self, food_name):
-        return 'http://api.nal.usda.gov/ndb/search/?format=json&q=' + food_name + '&max=100&offset=0&api_key=' + self.api_key
+        return 'http://api.nal.usda.gov/ndb/search/?format=json&q=' + food_name + '&max=399&offset=0&api_key=' + self.api_key
     def search_by_name(self, name):
         result = Search_query.objects.filter(query_string=name)
         objects = []
-        if (len(result) != 0):
+        if (len(result) != 0 and False):
             objects = result[0].search_entry_set.all()
         else:
             url = self.get_search_url(name)
@@ -158,3 +158,20 @@ class FCD(object):
         nutrients = FCD.get_nutrients(ndbno)
         return set(m["label"] for n in nutrients for m in n["measures"])
 
+def calculate_consumption(ndbno, measure, quantity):
+    f = FCD()
+    nutrients = f.get_nutrients(ndbno)
+    intake = []
+    for nutrient in nutrients:
+        for i_measure in nutrient["measures"] :
+            if i_measure["label"] == measure and i_measure["value"] != 0 :
+                intake.append({
+                        "label": nutrient["name"], 
+                        "unit": nutrient["unit"], 
+                        "intake": float(i_measure["value"]) * quantity
+                    })
+
+    for item in intake:
+        if item["unit"] == "kcal":
+           return item["intake"]
+    return 0

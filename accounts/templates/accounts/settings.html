@@ -1,0 +1,80 @@
+
+<div class="jumbotron yolk-background" style="height: 100%">
+  <div class="container-fluid">
+
+	   
+
+	   {% if message is not None %}
+	   	<h3 class="search_results_ul"><div>{{ message }}</div></h3>
+	   {% endif %}
+
+
+		<form role="form" action="{% url 'accounts:change' %}" method="POST">
+			{% csrf_token %}
+  
+<!--
+				<div class="form-group">
+					<label>Username</label>
+					<input type="text" class="form-control" name="user" />
+				</div>
+				<div class="form-group">
+					<label for="mail1">Email address</label>
+					<input type="text" class="form-control" name="mail" />
+				</div>
+				<div class="form-group">
+					 
+					<label for="pass1">Password</label>
+					<input type="password" class="form-control" name="pass"/>
+				</div>
+
+		<label for="pass1">Birth Date</label>
+                <div class="from-group input-group date" id="datetimepicker1">
+                    <input type="text" class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+		   <script type="text/javascript">
+	  		$(function () {
+	                	$('#datetimepicker1').datetimepicker({
+		        	format: 'dd/MM/yyyy hh:mm:ss',
+	       			language: 'pt-BR'
+	      			});
+	            	});
+	        	</script>
+-->
+
+		<div class="form-group">
+		<label for="weight">Weight (kg)</label>
+		<div class="form-group">
+		  <select class="form-control" name="weight">
+		                 <option selected values="{{ user.weightInKg }}">{{ user.weightInKg }}</option>
+
+<option values="30">30</option><option values="31">31</option><option values="32">32</option><option values="33">33</option><option values="34">34</option><option values="35">35</option><option values="36">36</option><option values="37">37</option><option values="38">38</option><option values="39">39</option><option values="40">40</option><option values="41">41</option><option values="42">42</option><option values="43">43</option><option values="44">44</option><option values="45">45</option><option values="46">46</option><option values="47">47</option><option values="48">48</option><option values="49">49</option><option values="50">50</option><option values="51">51</option><option values="52">52</option><option values="53">53</option><option values="54">54</option><option values="55">55</option><option values="56">56</option><option values="57">57</option><option values="58">58</option><option values="59">59</option><option values="60">60</option><option values="61">61</option><option values="62">62</option><option values="63">63</option><option values="64">64</option><option values="65">65</option><option values="66">66</option><option values="67">67</option><option values="68">68</option><option values="69">69</option><option values="70">70</option><option values="71">71</option><option values="72">72</option><option values="73">73</option><option values="74">74</option><option values="75">75</option><option values="76">76</option><option values="77">77</option><option values="78">78</option><option values="79">79</option><option values="80">80</option><option values="81">81</option><option values="82">82</option><option values="83">83</option><option values="84">84</option><option values="85">85</option><option values="86">86</option><option values="87">87</option><option values="88">88</option><option values="89">89</option><option values="90">90</option><option values="91">91</option><option values="92">92</option><option values="93">93</option><option values="94">94</option><option values="95">95</option><option values="96">96</option><option values="97">97</option><option values="98">98</option><option values="99">99</option><option values="100">100</option><option values="101">101</option><option values="102">102</option><option values="103">103</option><option values="104">104</option><option values="105">105</option><option values="106">106</option><option values="107">107</option><option values="108">108</option><option values="109">109</option><option values="110">110</option><option values="111">111</option><option values="112">112</option><option values="113">113</option><option values="114">114</option><option values="115">115</option><option values="116">116</option><option values="117">117</option><option values="118">118</option><option values="119">119</option><option values="120">120</option><option values="121">121</option><option values="122">122</option><option values="123">123</option><option values="124">124</option><option values="125">125</option><option values="126">126</option><option values="127">127</option><option values="128">128</option><option values="129">129</option><option values="130">130</option><option values="131">131</option><option values="132">132</option><option values="133">133</option><option values="134">134</option><option values="135">135</option><option values="136">136</option><option values="137">137</option><option values="138">138</option><option values="139">139</option><option values="140">140</option><option values="141">141</option><option values="142">142</option><option values="143">143</option><option values="144">144</option><option values="145">145</option><option values="146">146</option><option values="147">147</option><option values="148">148</option><option values="149">149</option><option values="150">150</option><option values="151">151</option><option values="152">152</option><option values="153">153</option><option values="154">154</option><option values="155">155</option><option values="156">156</option><option values="157">157</option><option values="158">158</option><option values="159">159</option><option values="160">160</option><option values="161">161</option><option values="162">162</option><option values="163">163</option><option values="164">164</option><option values="165">165</option><option values="166">166</option><option values="167">167</option><option values="168">168</option><option values="169">169</option><option values="170">170</option><option values="171">171</option><option values="172">172</option><option values="173">173</option><option values="174">174</option><option values="175">175</option><option values="176">176</option><option values="177">177</option><option values="178">178</option><option values="179">179</option><option values="180">180</option><option values="181">181</option><option values="182">182</option><option values="183">183</option><option values="184">184</option><option values="185">185</option><option values="186">186</option><option values="187">187</option><option values="188">188</option><option values="189">189</option><option values="190">190</option><option values="191">191</option><option values="192">192</option><option values="193">193</option><option values="194">194</option><option values="195">195</option><option values="196">196</option><option values="197">197</option><option values="198">198</option><option values="199">199</option><option values="200">200</option><option values="201">201</option><option values="202">202</option><option values="203">203</option><option values="204">204</option><option values="205">205</option><option values="206">206</option><option values="207">207</option><option values="208">208</option><option values="209">209</option><option values="210">210</option><option values="211">211</option><option values="212">212</option><option values="213">213</option><option values="214">214</option><option values="215">215</option><option values="216">216</option><option values="217">217</option><option values="218">218</option><option values="219">219</option><option values="220">220</option>
+		  </select>
+		</div>
+		</div>
+
+           <div class="form-group">
+                <label for="height">Height (in cm)</label>
+                <div class="form-group">
+                  <select class="form-control" name="height">
+<option selected values="{{ user.heightInCm }}">{{ user.heightInCm }}</option>
+<option values="30">30</option><option values="31">31</option><option values="32">32</option><option values="33">33</option><option values="34">34</option><option values="35">35</option><option values="36">36</option><option values="37">37</option><option values="38">38</option><option values="39">39</option><option values="40">40</option><option values="41">41</option><option values="42">42</option><option values="43">43</option><option values="44">44</option><option values="45">45</option><option values="46">46</option><option values="47">47</option><option values="48">48</option><option values="49">49</option><option values="50">50</option><option values="51">51</option><option values="52">52</option><option values="53">53</option><option values="54">54</option><option values="55">55</option><option values="56">56</option><option values="57">57</option><option values="58">58</option><option values="59">59</option><option values="60">60</option><option values="61">61</option><option values="62">62</option><option values="63">63</option><option values="64">64</option><option values="65">65</option><option values="66">66</option><option values="67">67</option><option values="68">68</option><option values="69">69</option><option values="70">70</option><option values="71">71</option><option values="72">72</option><option values="73">73</option><option values="74">74</option><option values="75">75</option><option values="76">76</option><option values="77">77</option><option values="78">78</option><option values="79">79</option><option values="80">80</option><option values="81">81</option><option values="82">82</option><option values="83">83</option><option values="84">84</option><option values="85">85</option><option values="86">86</option><option values="87">87</option><option values="88">88</option><option values="89">89</option><option values="90">90</option><option values="91">91</option><option values="92">92</option><option values="93">93</option><option values="94">94</option><option values="95">95</option><option values="96">96</option><option values="97">97</option><option values="98">98</option><option values="99">99</option><option values="100">100</option><option values="101">101</option><option values="102">102</option><option values="103">103</option><option values="104">104</option><option values="105">105</option><option values="106">106</option><option values="107">107</option><option values="108">108</option><option values="109">109</option><option values="110">110</option><option values="111">111</option><option values="112">112</option><option values="113">113</option><option values="114">114</option><option values="115">115</option><option values="116">116</option><option values="117">117</option><option values="118">118</option><option values="119">119</option><option values="120">120</option><option values="121">121</option><option values="122">122</option><option values="123">123</option><option values="124">124</option><option values="125">125</option><option values="126">126</option><option values="127">127</option><option values="128">128</option><option values="129">129</option><option values="130">130</option><option values="131">131</option><option values="132">132</option><option values="133">133</option><option values="134">134</option><option values="135">135</option><option values="136">136</option><option values="137">137</option><option values="138">138</option><option values="139">139</option><option values="140">140</option><option values="141">141</option><option values="142">142</option><option values="143">143</option><option values="144">144</option><option values="145">145</option><option values="146">146</option><option values="147">147</option><option values="148">148</option><option values="149">149</option><option values="150">150</option><option values="151">151</option><option values="152">152</option><option values="153">153</option><option values="154">154</option><option values="155">155</option><option values="156">156</option><option values="157">157</option><option values="158">158</option><option values="159">159</option><option values="160">160</option><option values="161">161</option><option values="162">162</option><option values="163">163</option><option values="164">164</option><option values="165">165</option><option values="166">166</option><option values="167">167</option><option values="168">168</option><option values="169">169</option><option values="170">170</option><option values="171">171</option><option values="172">172</option><option values="173">173</option><option values="174">174</option><option values="175">175</option><option values="176">176</option><option values="177">177</option><option values="178">178</option><option values="179">179</option><option values="180">180</option><option values="181">181</option><option values="182">182</option><option values="183">183</option><option values="184">184</option><option values="185">185</option><option values="186">186</option><option values="187">187</option><option values="188">188</option><option values="189">189</option><option values="190">190</option><option values="191">191</option><option values="192">192</option><option values="193">193</option><option values="194">194</option><option values="195">195</option><option values="196">196</option><option values="197">197</option><option values="198">198</option><option values="199">199</option><option values="200">200</option><option values="201">201</option><option values="202">202</option><option values="203">203</option><option values="204">204</option><option values="205">205</option><option values="206">206</option><option values="207">207</option><option values="208">208</option><option values="209">209</option><option values="210">210</option><option values="211">211</option><option values="212">212</option><option values="213">213</option><option values="214">214</option><option values="215">215</option><option values="216">216</option><option values="217">217</option><option values="218">218</option><option values="219">219</option><option values="220">220</option>
+                  </select>
+                </div>
+                </div>
+
+
+
+				<button type="submit" class="btn btn-primary btn-lg">
+					Save Changes
+				</button>
+
+
+			</form>
+
+
+
+  </div>
+</div>
