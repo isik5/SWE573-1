@@ -1,0 +1,80 @@
+
+<div class="jumbotron yolk-background" style="height: 100%">
+  <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-4">
+				{{ username }}
+				</div>
+				<div class="col-md-4">
+				{{ userinfo.weightInKg }} Kg
+				</div>
+				<div class="col-md-4">
+				{{ userinfo.heightInCm }} cm
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+				BMI: {{ bmi }}
+				</div>
+				<div class="col-md-4">
+				Calory limit {{ cal_max }} 
+				</div>
+				<div class="col-md-4">
+				Total {{ cal_total }}
+				</div>
+			</div>
+		</div>
+
+		<style type="text/css">
+
+.flowtable
+{
+	position: relative;
+}
+.flowtable>.flow_line{
+	background-color: #2682D5;
+	position: absolute;
+	width: 20px;
+	height: 600px;
+	border-radius: 10px;
+	left: 25px;
+	padding-top: 30px;
+
+}
+
+.item{
+	font-size: 22px;
+	position: relative;
+	left: -10px;
+	margin-bottom: 20px;
+}
+.item>*{
+	position: relative;
+	left: 8px;
+	top: 8px;
+}
+.arther{
+	position: relative;
+	top: -18px;
+	left: 60px;
+	width: 600px;
+	display: block;
+	font-size: 14px;
+}
+</style>
+		<br>
+		<br>
+		<br>
+		<div class="flowtable">
+			<div class="flow_line">
+			{% for consumation in consumations %}
+			<span class="sidebar-button item"><span class="glyphicon glyphicon-cutlery"></span><span class="arther"> {{ consumation.food.name }} ({{ consumation.amount }} {{ consumation.unit }})</span></span>
+			{% endfor %}
+			</div>
+		</div>
+
+	</div>
+</div>
+</div>

@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from nutritrack.pagebuilder import *
 from accounts.models import UserInfo, Sport
+import datetime
 
 #from django.shortcuts import render
 from models import USDA, Food, FCD
@@ -148,5 +149,27 @@ def activity_apply(request):
 		except KeyError:
 			print('Exception')
 		return render_with_master(request, context, 'usda/activity_details.html')
+	else:
+		return redirect('accounts:signup')
+
+
+
+#---------------------------------------------------
+def info(request):
+	usinfo = request.user.userinfo_set.all()[0]
+	bmi = usinfo.weightInKg * 100 * 100 / usinfo.heightInCm/ usinfo.heightInCm
+	ideal_cal = 89.57 * bmi
+	today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
+	today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
+	consumations = request.user.consumation_set.filter(date__range=(today_min, today_max))
+	if (request.user.is_authenticated):
+		context = {
+			'username' : request.user.username,
+			'userinfo': usinfo,
+			'bmi' : bmi,
+			'cal_max': ideal_cal - 200,
+			'consumations' : consumations
+		}
+		return render_with_master(request, context, 'usda/info.html')
 	else:
 		return redirect('accounts:signup')

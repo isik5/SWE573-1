@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'^activity_details/$', views.activity_details, name='activity_details'),
     url(r'^activity_search_request/$', views.searchactivityrequest, name='search_activity_request'),
     url(r'^activity_apply/$', views.activity_apply, name='activity_apply'),
+    url(r'^info/$', views.info, name='info'),
 
 ]
