@@ -8,6 +8,8 @@ from django.contrib.auth import authenticate
 from nutritrack.pagebuilder import *
 from accounts.models import UserInfo, Sport
 import datetime
+from datetime import timedelta
+
 
 #from django.shortcuts import render
 from models import USDA, Food, FCD, calculate_consumption
@@ -159,8 +161,13 @@ def info(request):
 	usinfo = request.user.userinfo_set.all()[0]
 	bmi = usinfo.weightInKg * 100 * 100 / usinfo.heightInCm/ usinfo.heightInCm
 	ideal_cal = 89.57 * bmi
-	today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
-	today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
+
+	days = int(request.GET['day'])
+	if days < -1:
+		days = 0
+
+	today_min = datetime.datetime.combine(datetime.date.today() - timedelta(days=days) , datetime.time.min)
+	today_max = datetime.datetime.combine(datetime.date.today() - timedelta(days=days), datetime.time.max)
 	consumations = request.user.consumation_set.filter(date__range=(today_min, today_max))
 	sports = request.user.sport_set.filter(date__range=(today_min, today_max))
 
@@ -182,6 +189,9 @@ def info(request):
 			'consumations' : consumations,
 			'total_cal' : total_cal,
 			'sports' : sports, 
+			'days': days,
+			'days_prev' : days + 1,
+			'days_next' : days - 1,
 		}
 		return render_with_master(request, context, 'usda/info.html')
 	else:

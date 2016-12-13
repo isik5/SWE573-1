@@ -1,5 +1,6 @@
 
 <div class="jumbotron yolk-background" style="height: 100%">
+
   <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -65,6 +66,9 @@
 }
 </style>
 		<br>
+
+		<a href="{% url 'usda:info'%}?day={{ days_prev }}"><span><span class="glyphicon glyphicon-circle-arrow-left"></span></span> Previous</a>
+		<a style="margin-left: 70%;" href="{% url 'usda:info'%}?day={{ days_next }}">Next <span><span class="glyphicon glyphicon-circle-arrow-right"></span></span></a>
 		<br>
 		<br>
 		<div class="flowtable">
