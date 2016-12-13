@@ -1,0 +1,28 @@
+.inline-radio{
+	display: inline;
+	margin-left: 10px;
+}
+
+.search_results_ul>div:first-child{
+	border-radius: 10px 10px 0px 0px;
+}
+.search_results_ul>div:last-child{
+	border-radius:  0px 0px 10px 10px;
+}
+.search_results_ul>div{
+	width:80%;
+	border: 1px solid #6DAB6D;
+	background-color: #EDFFED;
+	display: block;
+	padding: 3px;
+	margin-bottom: -1px;
+
+}
+.search_results{
+	width: 100%;
+	margin: 40px;
+	padding: 20px;
+	background-color: #fafafa;
+	border-radius: 10px;
+	border: 1px solid #ababab;
+}
