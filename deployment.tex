@@ -1,0 +1,160 @@
+\section{Deployment}
+\subsection{Description}
+In this section, the steps which must be taken to deploy the application
+into production will be explained. To start with, the production environment
+must have these dependencies already installed:
+
+\begin{table}[H]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabular}{@{}llll@{}}
+\toprule
+ & Type & Name & Version \\ 
+\midrule
+1 & OS     & Ubuntu     & 14.04+, 32bit+        \\
+2 & Programming Language     & Python    & 2.7       \\
+3 & Dependency management & Pip & 8.1.1+ \\
+4 & Version control & Git & 1.0+ \\
+5 & SSH Agent & OpenSSH & 1.0+ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+These dependencies are required to be in the production environment,
+and their installation processes are not covered in this document. However,
+many of these packages are usually included in standard linux distributions.
+If Ubuntu 16.04 is chosen as target OS, dependencies 2,3,4,5 will be 
+available in the system.
+
+Here are the dependencies of which installation processes are covered in this
+document
+
+\begin{table}[H]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabular}{@{}llll@{}}
+\toprule
+ & Type & Name & Version \\ 
+\midrule
+1 & Web Framework & Django & 1.10.3 \\
+2 & Network library & requests & Most recent \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Deployment}
+
+The project is hosted at Github. Please clone the repository via Git:
+
+\begin{lstlisting}
+$ git clone https://github.com/onatbas/SWE573
+$ cd SWE573
+\end{lstlisting}
+
+A dependency.txt file is placed under the repository. This will install
+"requests" library for you. Type in this:
+
+\begin{lstlisting}
+$ sudo pip freeze > dependencies.txt
+\end{lstlisting}
+
+You'll also need to install django manually. To ensure you have the correct
+version, please check;
+
+\begin{lstlisting}
+$ python -v 
+\end{lstlisting}
+ gives you 2.7. \\ If Python version is correct, please install django with 
+the correct version tag, like this:
+
+\begin{lstlisting}
+$ pip install django==1.10.3
+\end{lstlisting}
+
+Based on your credentials, you might need to execute this on sudo mode.
+
+\subsubsection{Production}
+
+The current design of the application is based on django's ability to serve
+the application. This is done by "runserver" command. Before explaining this,
+some setup is required. This is to ensure;
+\begin{enumerate}
+\item A database is ready to use.
+\item An admin account is created.
+\end{enumerate}
+
+\subsubsection{Admin Account}
+To create the admin account, simply type this in the terminal
+
+\begin{lstlisting}
+$ python manage.py createsuperuser
+\end{lstlisting}
+
+and type in the required fields.
+
+\subsubsection{Creating Database}
+Django creates the database as long as the project has ORM information.
+In Nutritrack, these ORM files or migrations are also versioned with the project,
+so django has everything to create the tables, schemas etc. For quick SQLite setup,
+use this command.
+
+\begin{lstlisting}
+$ python manage.py migrate
+\end{lstlisting}
+
+\subsubsection{Production}
+
+After previous steps, NutriTrack is ready to go live production. Simply, type 
+this in:
+
+\begin{lstlisting}
+$ python manage.py runserver 
+\end{lstlisting}
+
+If you're using SSH connection to your server instance, you want to be able
+to exit the command line while the application is running, to do this, 
+screen command may be used.
+
+\begin{lstlisting}
+$ screen
+// Press enter
+$ python manage.py runserver
+// CTRL + A + D
+\end{lstlisting}
+
+screen is a standard tool that comes with linux dsitributions and is reliable
+to execute commands on other terminal instances while another process is running.
+
+You may connect to the same screen instance with this call.
+\begin{lstlisting}
+$ screen -r
+\end{lstlisting}
+
+If the instance has more than one screen instances running at a given time, 
+this command will list the screen instances instead of connecting to 
+a random one. From the list, id can be read and connection can be made based 
+on the id of the screen such as this:
+
+\begin{lstlisting}
+$ screen -r 27830
+\end{lstlisting}
+
+To kill all the screen instances, simply type this:
+
+\begin{lstlisting}
+$ killall screen
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
+
