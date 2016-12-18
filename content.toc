@@ -1,0 +1,11 @@
+\contentsline {section}{\numberline {1}Introduction}{3}
+\contentsline {subsection}{\numberline {1.1}Project Description}{3}
+\contentsline {section}{\numberline {2}Requirements}{4}
+\contentsline {section}{\numberline {3}Design Document}{7}
+\contentsline {subsection}{\numberline {3.1}High Level Architecture}{7}
+\contentsline {subsection}{\numberline {3.2}Behavioural and Functional Design}{7}
+\contentsline {subsubsection}{\numberline {3.2.1}Sign-up Process}{8}
+\contentsline {subsubsection}{\numberline {3.2.2}Sign-in Process}{9}
+\contentsline {subsubsection}{\numberline {3.2.3}Food Search Process}{10}
+\contentsline {subsubsection}{\numberline {3.2.4}Activity Search and Tracking Process}{11}
+\contentsline {subsubsection}{\numberline {3.2.5}Food Tracking Process}{12}
