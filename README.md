@@ -13,10 +13,10 @@ https://github.com/onatbas/SWE573/tree/document
 
 The requirements, along with diagrams are compiled with TeX. If you wish to compile on your PC, please ensure you have a TeX distribution ,and then from command line, call this: 
 
-  $ git clone https://github.com/onatbas/SWE573
-  $ cd SWE573
-  $ git checkout document
-  $ pdflatex context.tex
+    $ git clone https://github.com/onatbas/SWE573
+    $ cd SWE573
+    $ git checkout document
+    $ pdflatex context.tex
 
 ## High Level Project Plan
 https://docs.google.com/spreadsheets/d/1qyXpiynz98VzZ7XbIxlrORhlTReoZvDBkVaRZ6EM1d4/edit#gid=0
